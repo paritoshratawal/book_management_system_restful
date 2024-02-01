@@ -1,0 +1,37 @@
+{
+  "name": "book_management_system_restful",
+  "version": "1.0.0",
+  "description": "Book Mangement System for Book store",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paritoshratawal/book_management_system_restful.git"
+  },
+  "keywords": [
+    "book",
+    "management",
+    "system"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paritoshratawal/book_management_system_restful/issues"
+  },
+  "homepage": "https://github.com/paritoshratawal/book_management_system_restful#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "md5": "^2.3.0",
+    "mongoose": "^8.1.1",
+    "nodemailer": "^6.9.8",
+    "nodemon": "^3.0.3"
+  }
+}

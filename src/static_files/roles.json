@@ -1,0 +1,32 @@
+[
+  {
+    "role": "admin",
+    "access": [
+      "add_books",
+      "sale_retail",
+      "give_access",
+      "remove_books",
+      "remove_access",
+      "sale_wholesale",
+      "purchase_from_author",
+      "generate_retail_price",
+      "generate_wholesale_price",
+      "generate_bill_for_retail_user"
+    ]
+  },
+  {
+    "role": "author",
+    "access": [
+      "add_books",
+      "remove_books",
+      "add_book_label",
+      "sale_wholesale",
+      "sale_to_book_store",
+      "generate_bill_for_store_owner"
+    ]
+  },
+  {
+    "role": "retail_user",
+    "access": ["can_purchase_from_book_store"]
+  }
+]
