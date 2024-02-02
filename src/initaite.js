@@ -5,13 +5,13 @@ const mongoose = require('mongoose');
 const role_dao = require('./daos/role.dao');
 
 const routers = require('./routers/router.main');
+// const middlewares = require('./utils/middlewares');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
-
 
 const initiate_connection = async () => {
   try {

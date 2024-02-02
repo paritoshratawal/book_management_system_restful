@@ -22,17 +22,23 @@ const schema = new mongoose.Schema({
       type: String
     }
   },
-  authors: [{
+  book_id: {
+    type: String,
+    unique : true,
     required: true,
-    type: String
+  },
+  authors: [{
+    type: String,
+    required: true
   }],
   sell_count: {
     required: true,
     type: Number
   },
   title: {
-    required: true,
-    type: String
+    type: String,
+    unique : true,
+    required: true
   },
   description: {
     required: true,
