@@ -45,6 +45,10 @@ const schema = new mongoose.Schema({
       default: null,
       ref: role_model,
       type: mongoose.Schema.Types.ObjectId,
+    },
+    delete: {
+      type: Boolean,
+      required: false
     }
   });
 

@@ -31,10 +31,6 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   }],
-  sell_count: {
-    required: true,
-    type: Number
-  },
   title: {
     type: String,
     unique : true,
@@ -47,6 +43,15 @@ const schema = new mongoose.Schema({
   price: {
     required: true,
     type: Number
+  },
+  sell_count: { 
+    required: true,
+    type: Number,
+    default: 0 
+  },
+  is_deleted: {
+    required: false,
+    type: Boolean
   }
 });
 

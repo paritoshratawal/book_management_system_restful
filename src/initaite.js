@@ -3,8 +3,11 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const role_dao = require('./daos/role.dao');
+const mail_service = require('./utils/mailer');
 
 const routers = require('./routers/router.main');
+const purchase_history_dao = require('./daos/purchase_history.dao');
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 // const middlewares = require('./utils/middlewares');
 
 const app = express();
@@ -51,18 +54,48 @@ const listen = async () => {
     console.log('Error while listening', e);
   } finally {
     console.log(`⚡️[server]: Server is running at http://localhost:${6060}`);
+    initiate_auto_notification_service();
     initiate_controller();
   }
 }
 
-const initiate_controller = async() => {
+const initiate_controller = async () => {
   const result = await role_dao.get_all_doc();
-  if(result && !result.length){
+  if (result && !result.length) {
     role_dao.insert_records();
   }
   routers.array.forEach((route) => {
     app.use('/', route);
   })
 }
+
+const initiate_auto_notification_service = async () => {
+  try{
+    setTimeout(async() => {
+      await mail_service.createConnection();
+      const data = await mail_service.get_data_for_revenue_mail_to_author();
+      if(data.results.length){
+        data.results.forEach(result => {
+          result.sale_info.forEach(async(info) => {
+            const index = data.book_details.findIndex((book) => { return book.book_id === info.book_id });
+            const options = {
+              to: data.book_details[index]['created']['by'],
+              subject: `Book Revenue Notification for book : ${info.title}`,
+              text: `Book ${info.book_id} has generated monthly revenue of ${info.total_price_with_discount} for ${months[result.purchase_date.getMonth()]} month.`
+            };
+            await mail_service.sendMail('abc', options);
+            await purchase_history_dao.update(result.purchase_id, {is_send_email_notification: true});
+          });
+        });
+      }
+      
+      }, 12000);
+  }catch(e){
+
+  }
+  
+}
+
+
 
 module.exports = initiate_connection;

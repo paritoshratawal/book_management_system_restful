@@ -10,10 +10,7 @@ const role_dao = {
       save_doc['created']['by'] = 'admin';
       save_doc['modified']['by'] = 'admin';
       const result = await save_doc.save();
-      console.log(result);
     }
-
-    console.log('insert_records');
   },
   get_all_doc: async () => {
     const result = await role_model.find().exec();

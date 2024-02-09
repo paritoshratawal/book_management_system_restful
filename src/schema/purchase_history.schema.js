@@ -24,31 +24,51 @@ const schema = new mongoose.Schema({
       type: String
     }
   },
-  purchase_id: [{
+  purchase_id: {
     required: true,
-    type: String
-  }],
-  book_id: {
-    default: null,
-      ref: book_model,
-      type: mongoose.Schema.Types.ObjectId,
+    type: String,
+    unique: true
   },
+  total_bill_discount: { type: Number, required: false, default: 0 },
+  sale_info: [{
+    unit_price: { required: true, type: Number },
+    title: { required: false, type: String },
+    authors: { required: false, type: [String] },
+    book_id: { type: String, default: null},
+    discount: { type: mongoose.Types.Decimal128, required: false, default: 0 },
+    quantity: { required: true, type: Number },
+    total_price_without_discount: { required: true, type: Number },
+    total_price_with_discount: { required: true, type: Number }
+  }],
+  return_info: [{
+    book_id: { type: String, default: null},
+    quantity: { type: Number, default: null },
+  }],
+  book_id: [{
+    type: String,
+    default: null
+  }],
   user_id: {
     default: null,
       ref: user_model,
       type: mongoose.Schema.Types.ObjectId,
   },
   purchase_date: {
+    default: Date.now,
     required: true,
     type: Date
-  }, 
-  price: {
-    required: true,
-    type: Number
   },
-  quantity: {
+  total_bill_without_discount: {
+    required: true, type: Number
+  },
+  total_bill_with_discount: {
+    required: true, 
+    type: mongoose.Types.Decimal128
+  },
+  is_send_email_notification: {
+    type: Boolean,
     required: true,
-    type: Number
+    default: false
   }
 });
 
