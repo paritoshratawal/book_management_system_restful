@@ -40,10 +40,6 @@ const schema = new mongoose.Schema({
     total_price_without_discount: { required: true, type: Number },
     total_price_with_discount: { required: true, type: Number }
   }],
-  return_info: [{
-    book_id: { type: String, default: null},
-    quantity: { type: Number, default: null },
-  }],
   book_id: [{
     type: String,
     default: null

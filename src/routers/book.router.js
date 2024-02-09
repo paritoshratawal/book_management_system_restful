@@ -10,7 +10,6 @@ router.post('/book/get', middleware.authentication, book_controller.get_books_li
 router.delete('/book/delete', middleware.authentication, book_controller.delete_book);
 
 router.post('/book/purchase', middleware.authentication, book_controller.purchase_book);
-// router.post('book/return', middleware.authentication, purchase_history_controller.return_books);
 router.get('/book/purchase_history', middleware.authentication, purchase_history_controller.get_purchase_history_data);
 
 
